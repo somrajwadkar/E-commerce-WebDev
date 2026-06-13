@@ -60,4 +60,10 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
 
 
   });
+
+  exports.getAllProducts = catchAsyncErrors(async (req, res, next) => { 
+
+
+
+  })
 }); 
