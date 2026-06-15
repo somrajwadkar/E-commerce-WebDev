@@ -127,4 +127,17 @@ exports.deleteOrder = catchAsyncErrors(async (req, res, next) => {
   res.status(200).json({
     success: true,
   });
+
 });
+
+  exports.deleteReview = catchAsyncErrors(async (req, res, next) => {   
+   
+
+    const product = await Product.findById(req.query.productId);
+
+    if (!product) {
+      return next(new ErrorHander("Product not found", 404));
+    }   
+
+
+  });
