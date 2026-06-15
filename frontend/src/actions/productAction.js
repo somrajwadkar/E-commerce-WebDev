@@ -132,42 +132,7 @@ export const updateProduct = (id, productData) => async (dispatch) => {
 };
 
 // Delete Product
-export const deleteProduct = (id) => async (dispatch) => {
-  try {
-    dispatch({ type: DELETE_PRODUCT_REQUEST });
 
-    const { data } = await axios.delete(`/api/v1/admin/product/${id}`);
-
-    dispatch({
-      type: DELETE_PRODUCT_SUCCESS,
-      payload: data.success,
-    });
-  } catch (error) {
-    dispatch({
-      type: DELETE_PRODUCT_FAIL,
-      payload: error.response.data.message,
-    });
-  }
-};
-
-// Get Products Details
-export const getProductDetails = (id) => async (dispatch) => {
-  try {
-    dispatch({ type: PRODUCT_DETAILS_REQUEST });
-
-    const { data } = await axios.get(`/api/v1/product/${id}`);
-
-    dispatch({
-      type: PRODUCT_DETAILS_SUCCESS,
-      payload: data.product,
-    });
-  } catch (error) {
-    dispatch({
-      type: PRODUCT_DETAILS_FAIL,
-      payload: error.response.data.message,
-    });
-  }
-};
 
 // NEW REVIEW
 export const newReview = (reviewData) => async (dispatch) => {
