@@ -41,7 +41,6 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
     success: true,
     product,
 
-
   });
 
   exports.getAllProducts = catchAsyncErrors(async (req, res, next) => { 
