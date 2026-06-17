@@ -333,3 +333,16 @@ exports.deleteReview = catchAsyncErrors(async (req, res, next) => {
     success: true,
   });
 });
+
+exports.getProductReviews = catchAsyncErrors(async (req, res, next) => {
+  const product = await Product.findById(req.query.id);
+
+  if (!product) {
+    return next(new ErrorHander("Product not found", 404));
+  }
+
+  res.status(200).json({
+    success: true,
+    reviews: product.reviews,
+  });
+});   
