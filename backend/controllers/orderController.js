@@ -134,10 +134,10 @@ exports.deleteOrder = catchAsyncErrors(async (req, res, next) => {
    
 
     const product = await Product.findById(req.query.productId);
-
+    //if not product found then return error
     if (!product) {
       return next(new ErrorHander("Product not found", 404));
     }   
-
+   
 
   });

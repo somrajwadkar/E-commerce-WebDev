@@ -222,25 +222,7 @@ exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
 
 // Delete Product
 
-exports.deleteProduct = catchAsyncErrors(async (req, res, next) => {
-  const product = await Product.findById(req.params.id);
 
-  if (!product) {
-    return next(new ErrorHander("Product not found", 404));
-  }
-
-  // Deleting Images From Cloudinary
-  for (let i = 0; i < product.images.length; i++) {
-    await cloudinary.v2.uploader.destroy(product.images[i].public_id);
-  }
-
-  await product.remove();
-
-  res.status(200).json({
-    success: true,
-    message: "Product Delete Successfully",
-  });
-});
 
 // Create New Review or Update the review
 exports.createProductReview = catchAsyncErrors(async (req, res, next) => {
@@ -346,3 +328,28 @@ exports.getProductReviews = catchAsyncErrors(async (req, res, next) => {
     reviews: product.reviews,
   });
 });   
+
+
+exports.deleteReview = catchAsyncErrors(async (req, res, next) => {   
+  const product = await Product
+.findById(req.query.productId);   
+
+  //if not product found then return error
+  if (!product) {
+    return next(new ErrorHander("Product not found", 404));
+  } 
+
+
+  const reviews = product.reviews.filter(
+    (rev) => rev._id.toString() !== req.query.id.toString()
+  );    
+
+
+  let avg = 0;
+
+  reviews.forEach((rev) => {
+    avg += rev.rating;
+  }); 
+
+
+});
